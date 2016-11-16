@@ -6,6 +6,7 @@ import logging
 # local requirements
 from lib.Configuration import *
 from lib.EVSE import *
+from lib.EV import *
 
 
 # main
@@ -15,6 +16,7 @@ if __name__ == "__main__":
     c = Configuration("settings.conf")
     logger_conf = c.read_logger_config()
     evse_conf = c.read_evse_config()
+    ev_conf = c.read_ev_config()
 
     # create an instance of the logger
     logger = logging.getLogger('ruralSIM')
@@ -33,3 +35,11 @@ if __name__ == "__main__":
 
         # create an instance of the EVSE class for each evse
         evses.append(EVSE(evse_conf, logger))
+
+    # create the EVs
+    evs = []
+    logger.debug("Creating %s EVs" % ev_conf["ev_number"])
+    for ev in xrange(ev_conf["ev_number"]):
+
+        # create an instance of the EVSE class for each evse
+        evs.append(EV(ev_conf, logger))

@@ -40,3 +40,14 @@ class Configuration:
         return conf
 
 
+    # EV config reader
+    def read_ev_config(self):
+        
+        """Reads the configuration of an EV"""
+
+        # EV configuration
+        conf = {}
+        conf["ev_number"] = self.cp.getint("EV", "ev_number")
+        conf["ev_capacity"] = self.cp.getint("EV", "ev_capacity")
+        conf["ev_initial_charge"] = self.cp.getint("EV", "ev_initial_charge")
+        return conf
