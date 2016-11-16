@@ -5,6 +5,7 @@ import logging
 
 # local requirements
 from lib.Configuration import *
+from lib.EVSE import *
 
 
 # main
@@ -27,9 +28,8 @@ if __name__ == "__main__":
 
     # create the EVSEs
     evses = []
+    logger.debug("Creating %s EVSEs" % evse_conf["evse_number"])
     for evse in xrange(evse_conf["evse_number"]):
 
         # create an instance of the EVSE class for each evse
-        logger.debug("Creating EVSE %s" % len(evses))
-        evses.append("")
-        pass
+        evses.append(EVSE(evse_conf, logger))
